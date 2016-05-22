@@ -1,19 +1,21 @@
 import React, { PropTypes, Component } from 'react'
-//import Comment from './Comment'
+import CommentList from './CommentList'
 
 class Article extends Component {
     state = {
-        isOpen: false,
-        some: 'other'
+        isOpen: false
     }
 
     render() {
         const { article } = this.props
         if (!article) return <h3>No article</h3>
+        const { title, text, id, comments } = article;
+        const { isOpen } = this.state;
 
-        const { title, text, id } = article
-        const { isOpen } = this.state
-        const textItem = isOpen ? <section>{text}</section> : null
+        const commentList = comments && comments.length ? <CommentList comments = {comments} />  : null;
+
+        const textItem = isOpen ? <section>{text} {commentList}</section> : null;
+
         return (
             <div>
                 <h3 onClick = {this.handleClick}>{title}</h3>
@@ -34,7 +36,8 @@ Article.propTypes = {
     article: PropTypes.shape({
         title: PropTypes.string.isRequired,
         text: PropTypes.string,
-        id: PropTypes.string.isRequired
+        id: PropTypes.string.isRequired,
+        comments: PropTypes.array
     })
 }
 
