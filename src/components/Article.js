@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react'
+//import Comment from './Comment'
 
 class Article extends Component {
     state = {
@@ -33,7 +34,7 @@ Article.propTypes = {
     article: PropTypes.shape({
         title: PropTypes.string.isRequired,
         text: PropTypes.string,
-        id: PropTypes.number.isRequired
+        id: PropTypes.string.isRequired
     })
 }
 
