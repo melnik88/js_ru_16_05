@@ -1,16 +1,14 @@
 import React, { PropTypes, Component } from 'react'
 import CommentList from './CommentList'
+import toggleOpen from '../decorators/toggleOpen'
 
 class Article extends Component {
-    state = {
-        isOpen: false
-    }
 
     render() {
-        const { article } = this.props
+        debugger;
+        const { article, isOpen, toggleOpen } = this.props;
         if (!article) return <h3>No article</h3>
         const { title, text, id, comments } = article;
-        const { isOpen } = this.state;
 
         const commentList = comments && comments.length ? <CommentList comments = {comments} />  : null;
 
@@ -18,7 +16,7 @@ class Article extends Component {
 
         return (
             <div>
-                <h3 onClick = {this.handleClick}>{title}</h3>
+                <h3 onClick = {toggleOpen}>{title}</h3>
                 {textItem}
             </div>
         )
@@ -38,7 +36,12 @@ Article.propTypes = {
         text: PropTypes.string,
         id: PropTypes.string.isRequired,
         comments: PropTypes.array
-    })
-}
+    }),
+
+    //From ToggleOpen
+    isOpen: PropTypes.bool.isRequired,
+    toggleOpen: PropTypes.func.isRequired
+
+};
 
 export default Article
