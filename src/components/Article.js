@@ -4,11 +4,11 @@ import CommentList from './CommentList'
 class Article extends Component {
     state = {
         isOpen: false
-    }
+    };
 
     render() {
-        const { article } = this.props
-        if (!article) return <h3>No article</h3>
+        const { article } = this.props;
+        if (!article) return <h3>No article</h3>;
         const { title, text, id, comments } = article;
         const { isOpen } = this.state;
 
