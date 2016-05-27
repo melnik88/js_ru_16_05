@@ -6,7 +6,7 @@ class Article extends Component {
 
     render() {
         const { article, isOpen, toggleOpen } = this.props;
-        if (!article) return <h3>No article</h3>
+        if (!article) return <h3>No article</h3>;
         const { title, text, id, comments } = article;
 
         const commentList = comments && comments.length ? <CommentList comments = {comments} />  : null;
@@ -21,7 +21,6 @@ class Article extends Component {
         )
     }
 }
-
 
 Article.propTypes = {
     article: PropTypes.shape({
