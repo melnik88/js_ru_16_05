@@ -1,7 +1,8 @@
 import { EventEmitter } from 'events'
+import DataWrapper from './DataWrapper'
 
 export default class BasicStore extends EventEmitter {
-    constructor(initialData = []) {
+    constructor(stores, initialData = []) {
         super();
         this._items = {};
         initialData.forEach(this._add)
@@ -9,11 +10,11 @@ export default class BasicStore extends EventEmitter {
 
     getAll = () => Object.keys(this._items).map(this.getById);
 
-    getById = (id) => this._items[id]
+    getById = (id) => this._items[id];
 
-    _delete = (id) => delete this._items[id]
+    _delete = (id) => delete this._items[id];
 
-    _add = (item) => this._items[item.id] = item
+    _add = (item) => this._items[item.id] = new DataWrapper(item, this);
 
     addChangeListener(callback) {
         this.on('SOME_INTERNAL_EVENT', callback)

@@ -1,13 +1,15 @@
 import React, { PropTypes, Component } from 'react'
 import CommentList from './CommentList'
 import toggleOpen from '../decorators/toggleOpen'
+import { commentStore } from '../stores'
 
 class Article extends Component {
 
     render() {
         const { article, isOpen, toggleOpen } = this.props;
         if (!article) return <h3>No article</h3>;
-        const { title, text, id, comments } = article;
+        const { title, text, id, comments:commentsIdArray } = article;
+        let comments = commentsIdArray.map((id) => commentStore.getById(id));
 
         const commentList = comments && comments.length ? <CommentList comments = {comments} />  : null;
 
