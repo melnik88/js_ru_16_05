@@ -10,7 +10,7 @@ export default (CustomComponent) => {
         }
 
         render() {
-            return <CustomComponent {...this.props} />
+            return <CustomComponent />
         }
     }
 }

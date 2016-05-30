@@ -5,7 +5,7 @@ export default class BasicStore extends EventEmitter {
     constructor(stores, initialData = []) {
         super();
         this._items = {};
-        initialData.forEach(this._add)
+        initialData.forEach(this._add);
     }
 
     getAll = () => Object.keys(this._items).map(this.getById);
@@ -14,7 +14,12 @@ export default class BasicStore extends EventEmitter {
 
     _delete = (id) => delete this._items[id];
 
-    _add = (item) => this._items[item.id] = new DataWrapper(item, this);
+    _add = (item) => {
+        this._items[item.id] = new DataWrapper(item, this);
+        this.lastItemId = item.id;
+    };
+
+    getLastId() { return this.lastItemId; }
 
     addChangeListener(callback) {
         this.on('SOME_INTERNAL_EVENT', callback)

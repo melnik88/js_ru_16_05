@@ -19,7 +19,7 @@ export default (CustomComponent) => {
         };
 
         render() {
-            return <CustomComponent {...this.props} articles = {this.state.articles}  />
+            return <CustomComponent articles = {this.state.articles}  />
         }
     }
 }

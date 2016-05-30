@@ -12,17 +12,16 @@ class Article extends Component {
         const { title, text, id, comments:commentsIdArray } = article;
         let comments = commentsIdArray.map((id) => commentStore.getById(id));
 
-        const commentList = comments && comments.length ? <CommentList comments = {comments} />  : null;
+        const commentList = comments && comments.length ? <CommentList comments = {comments} articleId= {article.id} />  : null;
 
         const textItem = isOpen ? <section>{text} {commentList}</section> : null;
 
         return (
             <div>
-                <h3 onClick = {toggleOpen}>{title}</h3>
+                <h3 onClick = {toggleOpen}>{title} <a href="#" onClick = {this.handleDelete}>delete me</a></h3>
                 {textItem}
-                <a href="#" onClick={this.handleDelete}>delete me</a>
-            </div>
 
+            </div>
         )
     }
 

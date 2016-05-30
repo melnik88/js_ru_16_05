@@ -1,18 +1,23 @@
 import React, { PropTypes, Component} from 'react'
-//import Comment from './Comment'
-import Comment from './CommentOld'
+import Comment from './Comment'
+import AddComment from './AddComment'
 
 class CommentList extends Component {
 	state = {
-		isOpen: false
-	}
+		isOpen: true
+	};
 
 	render() {
-		const { comments } = this.props;
+		const { comments, articleId } = this.props;
 		const { isOpen } = this.state;
-		const commentItems = isOpen ? comments.map((comment) => <li key = {comment.id}><Comment comment = {comment} /></li>): null
+		const commentItems = isOpen ? comments.map((comment) => <li key = {comment.id}><Comment comment = {comment} /></li>): null;
 
-		return <div><h4 class='title' onClick = {this.handleClick} >Comments</h4><ul>{commentItems}</ul></div>
+		return <div>
+				<h4 class='title' onClick = {this.handleClick} >Comments</h4>
+				<AddComment articleId = {articleId}/>
+				<br/>
+				<ul>{commentItems}</ul>
+			</div>
 	}
 
 	handleClick = (ev)=> {
@@ -22,6 +27,6 @@ class CommentList extends Component {
 
 CommentList.propTypes = {
 	comments: PropTypes.array.isRequired
-}
+};
 
 export default CommentList

@@ -2,7 +2,7 @@ import { Component as ReactComponent } from 'react'
 
 export default class BasicSubscribeTo extends ReactComponent {
 
-	constructor(stores, initialData = []) {
+	constructor() {
 		super();
 		this._store = null;
 	}
