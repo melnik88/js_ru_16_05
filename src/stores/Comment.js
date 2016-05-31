@@ -13,6 +13,7 @@ export default class Article extends BasicStore {
 				case ADD_COMMENT:
 					comment.id = this.getLastId() + 1;
 					this._add(comment);
+					//А вот это плохо, лучше подписиваться на ADD_COMMENT в ArticleStore
 					setTimeout(()=> {
 						onAddComment(articleId, comment.id)
 					});
