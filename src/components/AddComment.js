@@ -24,8 +24,6 @@ export default class AddComment extends Component {
 
 	addComment = (ev) => {
 		ev.preventDefault();
-		console.log(this.props.articleId);
-		//лучше не работать с DOM, а держать value в state
 		addComment(this.props.articleId, this.state);
 	}
 }

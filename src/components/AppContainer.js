@@ -1,17 +1,24 @@
 import React, { Component, PropTypes } from 'react'
 import ArticleList from './ArticleList'
 import connectToStore from '../decorators/connectToStore'
+import { loadArticles } from '../AC/articles'
 
 class AppContainer extends Component {
 
     render() {
-        return <ArticleList articles={this.props.articles} />
+        const { articles, loading } = this.props;
+        if (loading)
+            return <h1>Loading...</h1>
+        return <ArticleList articles={articles} />
     }
 }
 
 function getState(stores) {
+    const {articles} = stores;
+    if(!articles.getAll().length && !articles.loading) loadArticles()
     return {
-        articles: stores.articles.getAll()
+        loading: articles.loading,
+        articles: articles.getAll()
     }
 }
 

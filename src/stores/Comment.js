@@ -8,11 +8,11 @@ export default class Article extends BasicStore {
 		super(...args);
 
 		this.dispatchToken = AppDispatcher.register((action) => {
-			const { type, articleId, comment } = action;
+			const { type, payload } = action;
 			switch (type) {
 				case ADD_COMMENT:
 					comment.id = this.getLastId() + 1;
-					this._add(comment);
+					this._add(payload.comment);
 					break;
 			}
 		})
