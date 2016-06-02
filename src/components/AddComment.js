@@ -2,20 +2,30 @@ import React, { PropTypes, Component } from 'react'
 import {addComment} from '../AC/articles'
 
 export default class AddComment extends Component {
+	state = {
+		name: '',
+		text: ''
+	}
 
 	render() {
 		return <form>
 				<label>Enter your comment</label> <br/>
-				<input type="text" ref="name"/> <br/>
-				<textarea ref="comment"/> <br/>
+				<input type="text" onChange={this.handleChange('name')}/> <br/>
+				<textarea ref="comment" onChange={this.handleChange('text')}/> <br/>
 				<button type="submit" onClick = {this.addComment}>Отправить</button>
 			</form>
+	}
 
+	handleChange = input => ev => {
+		this.setState({
+			[input]: ev.target.value
+		})
 	}
 
 	addComment = (ev) => {
 		ev.preventDefault();
+		console.log(this.props.articleId);
 		//лучше не работать с DOM, а держать value в state
-		addComment(this.props.articleId, { name: this.refs.name.value, text: this.refs.comment.value });
+		addComment(this.props.articleId, this.state);
 	}
 }

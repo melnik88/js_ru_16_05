@@ -1,12 +1,12 @@
 import BasicStore from './BasicStore'
 import AppDispatcher from '../dispatcher'
-import { DELETE_ARTICLE, ON_ADD_COMMENT } from '../constants'
+import { DELETE_ARTICLE, ADD_COMMENT } from '../constants'
 
 export default class Article extends BasicStore {
     constructor(...args) {
         super(...args);
 
-        AppDispatcher.register((action) => {
+        this.dispatchToken = AppDispatcher.register((action) => {
             const { type, articleId, ...args } = action;
 
             switch (type) {
@@ -15,8 +15,9 @@ export default class Article extends BasicStore {
                     this.emitChange();
                     break;
 
-                case ON_ADD_COMMENT:
-                    this.addCommentById(articleId, args.commentId);
+                case ADD_COMMENT:
+                    AppDispatcher.waitFor([this.getStores().comments.dispatchToken]);
+                    this.addCommentById(articleId, args.comment.id);
                     break;
             }
         })

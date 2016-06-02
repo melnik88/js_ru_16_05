@@ -5,6 +5,7 @@ export default class BasicStore extends EventEmitter {
     constructor(stores, initialData = []) {
         super();
         this._items = {};
+        this._stores = stores;
         initialData.forEach(this._add);
     }
 
@@ -18,6 +19,8 @@ export default class BasicStore extends EventEmitter {
         this._items[item.id] = new DataWrapper(item, this);
         this.lastItemId = item.id;
     };
+
+    getStores = () => this._stores;
 
     getLastId() { return this.lastItemId; }
 
