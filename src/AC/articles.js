@@ -1,6 +1,7 @@
 import AppDispatcher from '../dispatcher'
 import { DELETE_ARTICLE, ADD_COMMENT, START, SUCCESS, FAIL, LOAD_ALL_ARTICLES } from '../constants'
-import $ from 'jquery'
+import { asyncAC } from './utils'
+import { loadAllArticlesCall } from './apiCalls'
 
 
 export function deleteArticle(id) {
@@ -24,23 +25,4 @@ export function addComment(articleId, comment) {
     AppDispatcher.dispatch(action)
 }
 
-export function loadArticles(){
-    AppDispatcher.dispatch({
-        type: LOAD_ALL_ARTICLES + START
-    });
-
-    $.get('api/article')
-        .done((response) => {
-            AppDispatcher.dispatch({
-                type: LOAD_ALL_ARTICLES + SUCCESS,
-                response
-            })
-        })
-        .fail((error) => {
-            AppDispatcher.dispatch({
-                type: LOAD_ALL_ARTICLES + FAIL,
-                error
-            })
-        })
-
-}
+export const loadAllArticles = asyncAC(LOAD_ALL_ARTICLES, loadAllArticlesCall);
