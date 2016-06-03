@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import ArticleList from './ArticleList'
 import connectToStore from '../decorators/connectToStore'
 import { loadAllArticles } from '../AC/articles'
+import { loadAllComments } from '../AC/comments'
 
 class AppContainer extends Component {
 
@@ -15,7 +16,7 @@ class AppContainer extends Component {
 
 function getState(stores) {
     const {articles} = stores;
-    if(!articles.getAll().length && !articles.loading) loadAllArticles()
+    if(!articles.getAll().length && !articles.loading) loadAllArticles();
     return {
         loading: articles.loading,
         articles: articles.getAll()

@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react'
 import Body from './Body'
 import toggleOpen from '../decorators/toggleOpen'
 import { deleteArticle, loadArticleById } from '../AC/articles'
-import { commentStore } from '../stores'
 
 class Article extends Component {
     render() {
@@ -10,15 +9,16 @@ class Article extends Component {
 
         if (!article) return <h3>No article</h3>;
         const { title, text, id, comments:commentsIdArray } = article;
-        let comments = commentsIdArray.map((id) => commentStore.getById(id));
 
-        const textItem = isOpen ? <Body article = {article} />: null;
+        //const textItem = isOpen ? <Body article = {article} />: null;
+        //test
+        const textItem = true ? <Body article = {article} /> : null;
+        //test
 
         return (
             <div>
                 <h3 onClick = {toggleOpen}>{title} <a href="#" onClick = {this.handleDelete}>delete me</a></h3>
                 {textItem}
-
             </div>
         )
     }

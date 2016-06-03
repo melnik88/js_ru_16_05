@@ -4,12 +4,12 @@ class Comment extends Component {
 
 	render() {
 		const { comment } = this.props;
-		const { id, title, name, text } = comment;
+		const { id, user, text } = comment;
 
 		return (
 			<div>
 				<div class='title'>
-					<span class='user'><b>{name}</b></span> <span>{title}</span>
+					<span class='user'><b>{user}</b></span>
 				</div>
 				<div class='text'>{text}</div>
 			</div>
