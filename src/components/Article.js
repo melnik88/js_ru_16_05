@@ -10,10 +10,7 @@ class Article extends Component {
         if (!article) return <h3>No article</h3>;
         const { title, text, id, comments:commentsIdArray } = article;
 
-        //const textItem = isOpen ? <Body article = {article} />: null;
-        //test
-        const textItem = true ? <Body article = {article} /> : null;
-        //test
+        const textItem = isOpen ? <Body article = {article} />: null;
 
         return (
             <div>
