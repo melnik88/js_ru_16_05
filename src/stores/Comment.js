@@ -11,7 +11,7 @@ export default class Article extends BasicStore {
 			const { type, payload } = action;
 			switch (type) {
 				case ADD_COMMENT:
-					comment.id = this.getLastId() + 1;
+					payload.comment.id = this.getLastId() + 1;
 					this._add(payload.comment);
 					break;
 			}

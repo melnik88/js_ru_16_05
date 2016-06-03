@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import {addComment} from '../AC/articles'
+import {addComment} from '../AC/comments'
 
 export default class AddComment extends Component {
 	state = {

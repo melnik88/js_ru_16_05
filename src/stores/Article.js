@@ -11,13 +11,12 @@ export default class Article extends BasicStore {
 
             switch (type) {
                 case DELETE_ARTICLE:
-                    debugger;
                     this._delete(payload);
                     break;
 
                 case ADD_COMMENT:
                     AppDispatcher.waitFor([this.getStores().comments.dispatchToken]);
-                    this.addCommentById(articleId, args.comment.id);
+                    this.addCommentById(payload.articleId, payload.comment.id);
                     break;
                 case LOAD_ALL_ARTICLES + START:
                     this.loading = true;

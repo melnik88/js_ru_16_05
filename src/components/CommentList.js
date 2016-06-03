@@ -8,16 +8,17 @@ class CommentList extends Component {
 	};
 
 	render() {
-		const { comments, articleId } = this.props;
+		const { articleId, comments } = this.props;
 		const { isOpen } = this.state;
-		const commentItems = isOpen ? comments.map((comment) => <li key = {comment.id}><Comment comment = {comment} /></li>): null;
+		const commentItems = isOpen ? comments.map((comment) => <li key={comment.id}><Comment comment={comment}/>
+		</li>) : null;
 
 		return <div>
-				<h4 class='title' onClick = {this.handleClick} >Comments</h4>
-				<AddComment articleId = {articleId}/>
-				<br/>
-				<ul>{commentItems}</ul>
-			</div>
+			<h4 class='title' onClick={this.handleClick}>Comments</h4>
+			<AddComment articleId={articleId}/>
+			<br/>
+			<ul>{commentItems}</ul>
+		</div>
 	}
 
 	handleClick = (ev)=> {
