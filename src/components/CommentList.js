@@ -4,7 +4,7 @@ import AddComment from './AddComment'
 
 class CommentList extends Component {
 	state = {
-		isOpen: true
+		isOpen: false
 	};
 
 	render() {

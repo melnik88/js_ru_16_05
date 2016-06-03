@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
-import CommentList from './CommentList'
+import Body from './Body'
 import toggleOpen from '../decorators/toggleOpen'
-import { deleteArticle } from '../AC/articles'
+import { deleteArticle, loadArticleById } from '../AC/articles'
 import { commentStore } from '../stores'
 
 class Article extends Component {
@@ -12,9 +12,7 @@ class Article extends Component {
         const { title, text, id, comments:commentsIdArray } = article;
         let comments = commentsIdArray.map((id) => commentStore.getById(id));
 
-        const commentList = comments && comments.length ? <CommentList comments = {comments} articleId= {article.id} />  : null;
-
-        const textItem = isOpen ? <section>{text} {commentList}</section> : null;
+        const textItem = isOpen ? <Body article = {article} />: null;
 
         return (
             <div>
@@ -23,6 +21,11 @@ class Article extends Component {
 
             </div>
         )
+    }
+
+    componentWillReceiveProps(newProps) {
+        const {isOpen, article: {id, text, loading}} = newProps;
+        if (isOpen && !text && !loading) loadArticleById({ id })
     }
 
     handleDelete = (ev) => {

@@ -6,7 +6,7 @@ export function asyncAC(type, apiCall) {
 		AppDispatcher.dispatch({
 			type: type + START,
 			payload
-		})
+		});
 
 		//not for prod, just simulating slow connection
 		setTimeout(() => {

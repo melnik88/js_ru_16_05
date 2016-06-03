@@ -1,6 +1,6 @@
 import BasicStore from './BasicStore'
 import AppDispatcher from '../dispatcher'
-import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, START, SUCCESS, FAIL } from '../constants'
+import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE_BY_ID, START, SUCCESS, FAIL } from '../constants'
 
 export default class Article extends BasicStore {
     constructor(...args) {
@@ -13,7 +13,6 @@ export default class Article extends BasicStore {
                 case DELETE_ARTICLE:
                     debugger;
                     this._delete(payload);
-                    this.emitChange();
                     break;
 
                 case ADD_COMMENT:
@@ -30,6 +29,16 @@ export default class Article extends BasicStore {
                 case LOAD_ALL_ARTICLES + FAIL:
                     break;
 
+                case LOAD_ARTICLE_BY_ID + START:
+                    this.getById(payload.id).loading = true;
+                    break;
+                case LOAD_ARTICLE_BY_ID + SUCCESS:
+                    this._add(response);
+                    break;
+                case LOAD_ARTICLE_BY_ID + FAIL:
+                    break;
+                default:
+                    return;
             }
             this.emitChange();
         })

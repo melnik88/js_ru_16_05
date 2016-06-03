@@ -1,7 +1,7 @@
 import AppDispatcher from '../dispatcher'
-import { DELETE_ARTICLE, ADD_COMMENT, START, SUCCESS, FAIL, LOAD_ALL_ARTICLES } from '../constants'
+import { DELETE_ARTICLE, ADD_COMMENT, START, SUCCESS, FAIL, LOAD_ALL_ARTICLES, LOAD_ARTICLE_BY_ID } from '../constants'
 import { asyncAC } from './utils'
-import { loadAllArticlesCall } from './apiCalls'
+import { loadAllArticlesCall, loadArticleCall } from './apiCalls'
 
 
 export function deleteArticle(id) {
@@ -26,3 +26,5 @@ export function addComment(articleId, comment) {
 }
 
 export const loadAllArticles = asyncAC(LOAD_ALL_ARTICLES, loadAllArticlesCall);
+
+export const loadArticleById = asyncAC(LOAD_ARTICLE_BY_ID, loadArticleCall)

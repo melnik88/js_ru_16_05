@@ -10,6 +10,8 @@ Object.assign(stores, {
     comments: new Comment(stores, normalizedComments)
 });
 
+window.stores = stores;
+
 export default stores
 export const articleStore = stores.articles;
 export const commentStore = stores.comments;
