@@ -22,4 +22,4 @@ function getState(stores) {
     }
 }
 
-export default connectToStore(['articles', 'comments'], getState)(AppContainer)
+export default connectToStore(['articles'], getState)(AppContainer)

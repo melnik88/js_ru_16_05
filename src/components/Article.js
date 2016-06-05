@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import Body from './Body'
 import toggleOpen from '../decorators/toggleOpen'
-import { deleteArticle, loadArticleById } from '../AC/articles'
+import { deleteArticle } from '../AC/articles'
 
 class Article extends Component {
     render() {
@@ -21,8 +21,7 @@ class Article extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const {isOpen, article: {id, text, loading}} = newProps;
-        if (isOpen && !text && !loading) loadArticleById({ id })
+
     }
 
     handleDelete = (ev) => {
@@ -35,13 +34,12 @@ Article.propTypes = {
     article: PropTypes.shape({
         title: PropTypes.string.isRequired,
         text: PropTypes.string,
-        id: PropTypes.number.isRequired,
-        comments: PropTypes.array
+        id: PropTypes.number.isRequired
     }),
 
     //From ToggleOpen
     isOpen: PropTypes.bool.isRequired,
-    toggleOpen: PropTypes.func.isRequired
+    toggleOpen: PropTypes.func
 
 };
 
