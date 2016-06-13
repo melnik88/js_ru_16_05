@@ -1,15 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import Navigation from '../containers/Navigation'
 
-class ArticlesIndex extends Component {
-    static propTypes = {
-
-    };
-
+class ArticlesRoot extends Component {
     render() {
         return (
             <div>
                 <h1>News app: Articles</h1>
+                <Link to="/articles/new">New article</Link>
                 <Navigation />
                 {this.props.children}
             </div>
@@ -17,4 +14,4 @@ class ArticlesIndex extends Component {
     }
 }
 
-export default ArticlesIndex
+export default ArticlesRoot
