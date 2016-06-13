@@ -6,13 +6,7 @@ class AuthForm extends Component {
         userName: ''
     };
 
-    static contextTypes = {
-        user: PropTypes.string,
-        switchUser: PropTypes.any
-    };
-
     render() {
-        //console.log(this.context);
         return (
             <form onSubmit = {this.handleSubmit}>
                 Enter your name:
@@ -31,7 +25,6 @@ class AuthForm extends Component {
     handleSubmit = (ev) => {
         ev.preventDefault();
         if(this.state.userName) {
-            console.log(this.props.switchUser());
             this.props.switchUser();
             browserHistory.push('/articles/new');
         }
