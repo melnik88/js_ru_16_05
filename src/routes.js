@@ -13,6 +13,7 @@ export default (
         <Redirect from = "/" to = "/articles"/>
         <Route path = "/articles" component = {ArticleRoot}>
             <IndexRoute component = {ArticleIndex}/>
+            //Логику аутентификации следовало просто сделать через Flux, а сдесь сделать редирект из onEnter, если юзера нет в сторе
             <Route path = "new" component = {ArticleNew} switchUser = {ArticleRoot.switchUser} />
             <Route path = ":id" component = {ArticlePage} />
         </Route>
