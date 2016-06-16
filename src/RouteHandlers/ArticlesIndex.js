@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Navigation from '../containers/Navigation'
+import { Link } from 'react-router'
 
 class ArticlesRoot extends Component {
     render() {

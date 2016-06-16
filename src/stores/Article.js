@@ -5,15 +5,15 @@ import { DELETE_ARTICLE, LOAD_COMMENTS_FOR_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICL
 
 export default class Article extends BasicStore {
     constructor(...args) {
-        super(...args)
+        super(...args);
 
         this.dispatchToken = AppDispatcher.register((action) => {
             const { type, payload, response, error } = action
 
-            let article
+            let article;
             switch (type) {
                 case DELETE_ARTICLE:
-                    this._delete(payload.id)
+                    this._delete(payload.id);
                     break
 
                 case ADD_COMMENT:
