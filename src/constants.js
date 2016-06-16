@@ -12,3 +12,5 @@ export const FAIL = '_FAIL';
 export const LOADING = 'LOADING';
 
 export const SIGN_IN = 'SIGN_IN';
+
+export const INCREMENT = 'INCREMENT';
